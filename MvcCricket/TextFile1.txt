@@ -1,0 +1,44 @@
+﻿Model to create db tables enable-migration
+
+PM> Enable-Migrations
+Checking if the context targets an existing database...
+Code First Migrations enabled for project MvcCricket.
+PM> 
+
+Update-Database
+Update-Database –Verbose
+
+add-migration Initial
+
+Enable-Migrations –EnableAutomaticMigrations
+
+Update-Database
+
+Update-Database –force
+---------------------------------- BURADAKİ YÖNTEM İLE ÇALIŞTI-- 
+1) First go to Server Explorer in Visual Studio, check if the ".mdf" Data Connections for this project are connected, if so, right click and delete.
+
+2 )Go to Solution Explorer, click show All Files icon.
+
+3) Go to App_Data, right click and delete all ".mdf" files for this project.
+
+4) Delete Migrations folder by right click and delete.
+
+5) Go to SQL Server Management Studio, make sure the DB for this project is not there, otherwise delete it.
+
+6) Go to Package Manager Console in Visual Studio and type:
+
+Enable-Migrations -Force
+Add-Migration init
+update-database -force
+7) Run your application
+
+
+PM> sqllocaldb.exe stop
+PM> sqllocaldb.exe delete
+PM> sqllocaldb.exe start
+
+Yeni bir method oluşturduktan sonra DbContext altına eklemeyi unutma.
+
+Add-Migration init
+update-database -force ile yeni tablonun oluşmasını sağlayabilirsin.
